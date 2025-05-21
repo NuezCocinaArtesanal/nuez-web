@@ -1,0 +1,11 @@
+function App() {
+  return (
+    <div className="h-screen bg-amber-50 flex items-center justify-center">
+      <h1 className="text-4xl text-gray-800 font-semibold">
+        Esto es Nuez 🍫
+      </h1>
+    </div>
+  );
+}
+
+export default App;
