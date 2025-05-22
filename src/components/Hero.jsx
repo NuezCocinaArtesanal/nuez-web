@@ -1,20 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './Hero.css';
 
 function Hero() {
   const [agradecido, setAgradecido] = useState(false);
   const [videoIndex, setVideoIndex] = useState(0);
+  const videoRef = useRef(null);
 
   const videos = ['/videos/1.mp4', '/videos/2.mp4', '/videos/3.mp4'];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setVideoIndex((prev) => (prev + 1) % videos.length);
-    }, 8000); // cambia cada 8 segundos
+    }, 12000); // cambia cada 12 segundos
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.classList.add('fade');
+      videoRef.current.src = videos[videoIndex];
+      videoRef.current.load();
+      videoRef.current.play();
+      setTimeout(() => {
+        videoRef.current.classList.remove('fade');
+      }, 800); // mismo que el CSS
+    }
+  }, [videoIndex]);
 
   const handlePedido = () => {
     setAgradecido(true);
@@ -26,42 +39,37 @@ function Hero() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* 🎥 Fondo dinámico con fade */}
-      <motion.video
-        key={videoIndex}
-        src={videos[videoIndex]}
-        className="absolute inset-0 w-full h-full object-cover z-0"
+      {/* 🎥 Video con cambio de fuente y fade */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700 ease-in-out"
         autoPlay
         loop
         muted
         playsInline
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
       />
 
-      {/* Blur + capa negra sutil */}
+      {/* Capa de oscurecimiento */}
       <div className="absolute inset-0 backdrop-blur-[2px] bg-black/30 z-0" />
 
-      {/* Contenido centrado */}
+      {/* Contenido */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-8 space-y-6 sm:space-y-8"
       >
-        {/* 🌰 Logo con animación de pulso */}
+        {/* Logo más definido con sutil pulso */}
         <motion.img
           src="/logo-nuez.png"
           alt="Nuez"
-          className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain drop-shadow-[0_0_15px_rgba(255,215,150,0.4)]"
-          initial={{ opacity: 0.8 }}
-          animate={{ opacity: [0.8, 1, 0.8], scale: [1, 1.02, 1] }}
-          transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+          className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain drop-shadow-lg"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.015, 1] }}
+          transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
         />
 
-        {/* 🍫 Botón principal */}
+        {/* Botón de pedido */}
         <motion.button
           onClick={handlePedido}
           initial={{ opacity: 0, y: 10 }}
@@ -89,14 +97,14 @@ function Hero() {
           {!agradecido && <span className="brillo" />}
         </motion.button>
 
-        {/* 📝 Mensaje poético */}
+        {/* Texto que explica el concepto de Nuez */}
         <motion.p
-          className="text-stone-100 text-sm sm:text-base opacity-90 tracking-wide italic"
+          className="text-white text-sm sm:text-lg font-light tracking-wide px-6 max-w-sm sm:max-w-md"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 1 }}
+          transition={{ delay: 3, duration: 1 }}
         >
-          Brownie del Día. Hechos en el momento. Cerramos cuando se van.
+          Brownie del Día. Horneamos con calma. Sin stock infinito. Cuando se venden todos, cerramos Nuez por hoy 🍫
         </motion.p>
       </motion.div>
     </div>
