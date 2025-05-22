@@ -16,42 +16,37 @@ function Hero() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Fondo de videos */}
-      <div className="absolute inset-0 grid grid-cols-3 gap-0 z-0">
-        {[1, 2, 3].map((n) => (
-          <video
-            key={n}
-            src={`/videos/${n}.mp4`}
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        ))}
-      </div>
+      {/* 🎥 Video de fondo único que cubre toda la pantalla */}
+      <video
+        src="/videos/1.mp4"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
-      {/* Capa de blur */}
+      {/* Capa de blur y oscurecimiento */}
       <div className="absolute inset-0 backdrop-blur-[2px] bg-black/30 z-0" />
 
-      {/* Contenido */}
+      {/* Contenido centrado */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 space-y-6 sm:space-y-8"
+        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-8 space-y-6 sm:space-y-8"
       >
-        {/* Logo más chico */}
+        {/* Logo responsive */}
         <motion.img
-  src="/logo-nuez.png"
-  alt="Nuez"
-  className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-xl rounded-full"
-  initial={{ y: 0 }}
-  animate={{ y: [-2, 2, -2] }}
-  transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+          src="/logo-nuez.png"
+          alt="Nuez"
+          className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain drop-shadow-xl"
+          initial={{ y: 0 }}
+          animate={{ y: [-2, 2, -2] }}
+          transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
         />
 
-        {/* Botón grande y hermoso */}
+        {/* Botón atractivo y accesible */}
         <motion.button
           onClick={handlePedido}
           initial={{ opacity: 0, y: 10 }}
