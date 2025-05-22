@@ -39,30 +39,41 @@ function Hero() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col items-center justify-center h-full space-y-8"
+        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 space-y-6 sm:space-y-8"
       >
-        {/* Logo chico */}
+        {/* Logo flotante */}
         <motion.img
           src="/logo-nuez.png"
           alt="Nuez"
-          className="w-10 h-10 object-contain drop-shadow-xl"
+          className="w-16 sm:w-20 md:w-24 h-auto object-contain drop-shadow-xl"
           initial={{ y: 0 }}
           animate={{ y: [-2, 2, -2] }}
           transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
         />
 
-        {/* Botón XXL con todo */}
+        {/* Botón con brillo + latido */}
         <motion.button
           onClick={handlePedido}
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
-          whileHover={{ scale: 1.07, y: -2 }}
-          whileTap={{ scale: 0.96 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: agradecido ? 1 : [1, 1.04, 1],
+          }}
+          transition={{
+            delay: 1.2,
+            duration: 0.8,
+            ease: 'easeOut',
+            repeat: agradecido ? 0 : Infinity,
+            repeatType: 'loop',
+            repeatDelay: 3,
+          }}
+          whileHover={{ scale: 1.08, y: -2 }}
+          whileTap={{ scale: 0.95 }}
           disabled={agradecido}
-          className="boton-brownie cursor-pointer relative overflow-hidden bg-gradient-to-b from-[#fff9f5] to-[#f2e9e2] text-stone-800 font-bold px-10 py-5 rounded-full text-2xl shadow-xl shadow-amber-300/30 border border-stone-300 hover:shadow-2xl transition-all duration-300"
+          className="boton-brownie cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#fff4e5] to-[#f5d7a2] text-stone-900 font-extrabold px-14 py-7 text-3xl sm:text-4xl rounded-full shadow-2xl shadow-amber-500/40 border border-amber-200 hover:shadow-[0_0_25px_rgba(255,193,90,0.6)] transition-all duration-300 ease-in-out"
         >
-          <span className="relative z-10">
+          <span className="relative z-10 tracking-wide">
             {agradecido ? '¡Gracias!' : 'Pedir ahora 🍫'}
           </span>
           {!agradecido && <span className="brillo" />}
