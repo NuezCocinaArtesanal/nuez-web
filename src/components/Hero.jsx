@@ -34,24 +34,24 @@ function Hero() {
       {/* Capa de blur */}
       <div className="absolute inset-0 backdrop-blur-[2px] bg-black/30 z-0" />
 
-      {/* Contenido centrado */}
+      {/* Contenido */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 space-y-6 sm:space-y-8"
       >
-        {/* Logo flotante */}
+        {/* Logo más chico */}
         <motion.img
           src="/logo-nuez.png"
           alt="Nuez"
-          className="w-16 sm:w-20 md:w-24 h-auto object-contain drop-shadow-xl"
+          className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-xl rounded-full"
           initial={{ y: 0 }}
           animate={{ y: [-2, 2, -2] }}
           transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
         />
 
-        {/* Botón con brillo + latido */}
+        {/* Botón grande y hermoso */}
         <motion.button
           onClick={handlePedido}
           initial={{ opacity: 0, y: 10 }}
@@ -71,7 +71,7 @@ function Hero() {
           whileHover={{ scale: 1.08, y: -2 }}
           whileTap={{ scale: 0.95 }}
           disabled={agradecido}
-          className="boton-brownie cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#fff4e5] to-[#f5d7a2] text-stone-900 font-extrabold px-14 py-7 text-3xl sm:text-4xl rounded-full shadow-2xl shadow-amber-500/40 border border-amber-200 hover:shadow-[0_0_25px_rgba(255,193,90,0.6)] transition-all duration-300 ease-in-out"
+          className="boton-brownie cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#fff4e5] to-[#f5d7a2] text-stone-900 font-extrabold px-12 py-6 text-xl sm:text-3xl rounded-full shadow-2xl shadow-amber-500/40 border border-amber-200 hover:shadow-[0_0_25px_rgba(255,193,90,0.6)] transition-all duration-300 ease-in-out"
         >
           <span className="relative z-10 tracking-wide">
             {agradecido ? '¡Gracias!' : 'Pedir ahora 🍫'}
