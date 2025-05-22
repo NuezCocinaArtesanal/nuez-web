@@ -43,12 +43,12 @@ function Hero() {
       >
         {/* Logo más chico */}
         <motion.img
-          src="/logo-nuez.png"
-          alt="Nuez"
-          className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-xl rounded-full"
-          initial={{ y: 0 }}
-          animate={{ y: [-2, 2, -2] }}
-          transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+  src="/logo-nuez.png"
+  alt="Nuez"
+  className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-xl rounded-full"
+  initial={{ y: 0 }}
+  animate={{ y: [-2, 2, -2] }}
+  transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
         />
 
         {/* Botón grande y hermoso */}
