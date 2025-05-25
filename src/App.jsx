@@ -1,13 +1,11 @@
 import Hero from './components/Hero';
-// ❌ BORRÁ o comentá esta línea:
-// import VideoGallery from './components/VideoGallery';
+import MenuCompra from './components/MenuCompra';
 
 function App() {
   return (
     <div className="relative">
       <Hero />
-      {/* ❌ Comentá o eliminá esta línea también: */}
-      {/* <VideoGallery /> */}
+            <MenuCompra />
     </div>
   );
 }
