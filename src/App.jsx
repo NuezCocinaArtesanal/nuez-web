@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="relative">
       <Hero />
-            <MenuCompra />
+      <MenuCompra />
     </div>
   );
 }

@@ -41,7 +41,7 @@ function Hero() {
         <img
           src="/img/stock.png"
           alt="Brownie Horneado"
-          className="w-[35%] h-auto object-cover rounded-lg shadow-md"  // Menos difusa y centrada en Y
+          className="w-[35%] h-auto object-cover rounded-lg shadow-md"
         />
       </div>
 
