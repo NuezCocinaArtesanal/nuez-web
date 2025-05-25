@@ -36,12 +36,12 @@ function Hero() {
       {/* Filtro visual */}
       <div className="absolute inset-0 bg-black/30 backdrop-blur-md z-0" />
 
-      {/* Imagen de brownies al borde inferior y achicada */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10">
+      {/* Imagen de brownies menos difusa y centrada en el eje Y */}
+      <div className="absolute bottom-0 left-0 top-1/2 transform -translate-y-1/2 z-10">
         <img
           src="/img/stock.png"
           alt="Brownie Horneado"
-          className="w-3/4 h-auto object-cover rounded-lg shadow-md"  // Se achica a 75% del ancho
+          className="w-[35%] h-auto object-cover rounded-lg shadow-md"  // Menos difusa y centrada en Y
         />
       </div>
 
